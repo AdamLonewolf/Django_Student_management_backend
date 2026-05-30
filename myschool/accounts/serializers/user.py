@@ -19,17 +19,3 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'password': {'write_only': True}
         }
-
-    def perform_create(self, serializer):
-        user = serializer.save()
-        password = self.request.data.get('password')
-        if password:
-            user.set_password(password)
-            user.save()
-
-    def perform_update(self, serializer):
-        user = serializer.save()
-        password = self.request.data.get('password')
-        if password:
-            user.set_password(password)
-            user.save()

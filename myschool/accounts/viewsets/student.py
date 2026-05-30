@@ -12,6 +12,24 @@ class StudentViewSet(ModelViewSet):
         if self.action in ['list', 'retrieve']:
             return [IsAdminOrTeacher()]
         return [IsAdmin()]
+    
+    def perform_create(self, serializer):
+            user_data = {
+                'email': self.request.data.get('email'),
+                'first_name': self.request.data.get('first_name'),
+                'last_name': self.request.data.get('last_name'),
+                'role': 'student',
+            }
+            from accounts.models.user import User
+            user = User.objects.create_user(**user_data, password=self.request.data.get('password'))
+            serializer.save(user=user)
+
+    def perform_update(self, serializer):
+            instance = serializer.save()
+            password = self.request.data.get('password')
+            if password:
+                instance.user.set_password(password)
+                instance.user.save()
 
     def get_queryset(self):  # ← indenté à l'intérieur
         user = self.request.user
