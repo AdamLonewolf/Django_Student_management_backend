@@ -26,3 +26,8 @@ class ParentViewSet(ModelViewSet):
         if password:
             instance.user.set_password(password)
             instance.user.save()
+
+    def perform_destroy(self, instance):
+        user = instance.user  # ← récupère le user lié
+        instance.delete()     # ← supprime le Student
+        user.delete()         # ← supprime aussi le User

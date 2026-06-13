@@ -26,3 +26,8 @@ class TeacherViewSet(ModelViewSet):
         if password:
             instance.user.set_password(password)
             instance.user.save()
+    
+    def perform_destroy(self, instance):
+        user = instance.user  
+        instance.delete()     
+        user.delete()         

@@ -59,14 +59,16 @@ class BulletinView(APIView):
 
         table = Table(data, colWidths=[200, 80, 120, 80])
         table.setStyle(TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#321fdb')),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#2c2c2c')), 
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
-            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f8f9fa')]),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.black), 
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.white, colors.HexColor('#f5f5f5')]),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.black), 
             ('FONTNAME', (0, -1), (-1, -1), 'Helvetica-Bold'),
-            ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor('#f0f0f0')),
+            ('BACKGROUND', (0, -1), (-1, -1), colors.HexColor('#e0e0e0')),
+            ('TEXTCOLOR', (0, -1), (-1, -1), colors.black),  
         ]))
         elements.append(table)
 
